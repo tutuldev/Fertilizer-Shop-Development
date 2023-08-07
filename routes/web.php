@@ -20,3 +20,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// custom
+
+Route::get('/bc', function () {
+    return view('backend.layouts.app');
+});
+Route::get('/index', function () {
+    return view('backend.index');
+});
+Route::get('/tab', function () {
+    return view('backend.tables');
+});
+Route::get('/ch', function () {
+    return view('backend.charts');
+});
