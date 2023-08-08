@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\indexController;
+use App\Http\Controllers\Backend\chartController;
+use App\Http\Controllers\Backend\tableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +26,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // custom
 
-Route::get('/bc', function () {
-    return view('backend.layouts.app');
-});
-Route::get('/index', function () {
-    return view('backend.index');
-});
-Route::get('/tab', function () {
-    return view('backend.tables');
-});
-Route::get('/ch', function () {
-    return view('backend.charts');
-});
+// by default with out controller start
+// Route::get('/back', function () {
+//     return view('backend.index');
+// });
+
+// Route::get('/tables', function () {
+//     return view('backend.tables');
+// });
+// Route::get('/charts', function () {
+//     return view('backend.charts');
+// });
+// by default with out controller end
+
+
+// custom route with controller
+
+// Route::get('/back', [App\Http\Controllers\Backend\indexController::class, 'index'])->name('backs');
+Route::get('/back', [indexController::class, 'index'])->name('backs');
+Route::get('/charts', [chartController::class, 'chart'])->name('charts');
+Route::get('/tables', [tableController::class, 'table'])->name('tables');
