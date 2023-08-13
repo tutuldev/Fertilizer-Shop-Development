@@ -47,7 +47,7 @@
                                     @endif
                                 </td>
                                 <td><a href="{{ url('Category/Edit/'.$category->id) }}" class="btn btn-info">Edit</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                    <a href="{{ url('softdelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a>
                                 </td>
                               </tr>
                             @endforeach
@@ -90,6 +90,58 @@
                 </div>
             </div>
         </div>
+        {{-- trast start  --}}
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Trash List
+                </div>
+
+                <div class="card-body">
+                    {{-- add table start  --}}
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">SI NO</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Created By</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach ( $trashCategories as $trashCAtegory )
+                            <tr>
+                                <th scope="row">{{ $trashCategories->firstItem()+$loop->index}}</th>
+                                <td>{{$trashCAtegory->category_name}}</td>
+                                <td>{{$trashCAtegory->user->name}}</td>
+                                <td>
+                                    @if($trashCAtegory->created_at == NULL)
+                                    <span class="text-danger">NO Time Set</span>
+                                    @else
+                                    {{$trashCAtegory->created_at->diffForHumans()}}
+                                    @endif
+                                </td>
+                                <td>
+                                <a href="{{ url('Category/restore/'.$trashCAtegory->id) }}" class="btn btn-info">Restore</a>
+                                <a href="{{ url('pdelete/category/'.$trashCAtegory->id) }}" class="btn btn-danger">P-Delete</a>
+                                </td>
+                              </tr>
+                            @endforeach
+
+                        </tbody>
+                      </table>
+                    {{-- add table end --}}
+                    {{-- paginaction  --}}
+                    {{ $trashCategories->links() }}
+                    {{-- paginaction  --}}
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+        {{-- trast end --}}
     </div>
 </div>
 @endsection

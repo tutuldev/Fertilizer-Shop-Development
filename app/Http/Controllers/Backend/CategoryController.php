@@ -15,8 +15,9 @@ class CategoryController extends Controller
     {
         // $categories = Category::all();
         // $categories = Category::latest()->get();
+        $trashCategories =  Category::onlyTrashed()->latest()->paginate(10);
         $categories = Category::latest()->paginate(5);
-        return view('admin.category.index',compact('categories'));
+        return view('admin.category.index',compact('trashCategories','categories'));
     }
     public function addChategory(Request $request)
     {
@@ -65,4 +66,28 @@ class CategoryController extends Controller
 
         return redirect()->route('all.category')->with('success','Category Updated');
     }
+
+    // soft delete
+
+    public function softDelete($id)
+    {
+        $delete = Category::find($id)->delete();
+        return redirect()->back()->with('success','Category Deleted');
+    }
+
+    // restore category
+
+    public function restoreCategory($id)
+    {
+        $delete = Category::withTrashed()->find($id)->restore();
+        return redirect()->back()->with('success','Category restore');
+    }
+
+    public function prmDelete($id)
+    {
+        $delete = Category::withTrashed()->find($id)->forceDelete();
+        return redirect()->back()->with('success','Category Parmanent Deleted');
+        
+    }
+
 }

@@ -56,4 +56,11 @@ Route::get('/tables', [tableController::class, 'table'])->name('tables');
  Route::post('category/add',[CategoryController::class, 'addChategory'])->name('store.category');
  Route::post('store/category/{id}',[CategoryController::class, 'updateCategory'])->name('update.category');
 
+ Route::get('softdelete/category/{id}',[CategoryController::class, 'softDelete'])->name('softDelete.category');
+
+ Route::get('Category/restore/{id}',[CategoryController::class, 'restoreCategory'])->name('restore.category');
+ Route::get('pdelete/category/{id}',[CategoryController::class, 'prmDelete'])->name('prmDelete.category');
+
+
+
 
