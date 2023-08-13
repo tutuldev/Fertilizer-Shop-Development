@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\indexController;
 use App\Http\Controllers\Backend\chartController;
 use App\Http\Controllers\Backend\tableController;
+use App\Http\Controllers\Backend\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +48,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/back', [indexController::class, 'index'])->name('backs');
 Route::get('/charts', [chartController::class, 'chart'])->name('charts');
 Route::get('/tables', [tableController::class, 'table'])->name('tables');
+// all category
+
+ Route::get('category/all',[CategoryController::class, 'allChategory'])->name('all.category');
+ Route::get('Category/Edit/{id}',[CategoryController::class, 'editCategory'])->name('edit.category');
+
+ Route::post('category/add',[CategoryController::class, 'addChategory'])->name('store.category');
+ Route::post('store/category/{id}',[CategoryController::class, 'updateCategory'])->name('update.category');
+
+
