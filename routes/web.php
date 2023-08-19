@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\indexController;
 use App\Http\Controllers\Backend\chartController;
 use App\Http\Controllers\Backend\tableController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\BrandController;
 
 
 /*
@@ -61,6 +62,13 @@ Route::get('/tables', [tableController::class, 'table'])->name('tables');
  Route::get('Category/restore/{id}',[CategoryController::class, 'restoreCategory'])->name('restore.category');
  Route::get('pdelete/category/{id}',[CategoryController::class, 'prmDelete'])->name('prmDelete.category');
 
+//  all brand
+
+Route::get('Brand/all',[BrandController::class,'allBrand'])->name('all.brand');
+Route::post('Brand/add',[BrandController::class, 'addBrand'])->name('store.brand');
+Route::get('Brand/Edit/{id}',[BrandController::class, 'editBrand'])->name('edit.brand');
+Route::post('store/brand/{id}',[BrandController::class, 'updateBrand'])->name('update.Brand');
+Route::get('Brand/Delete/{id}',[BrandController::class, 'brandDelete'])->name('Delete.Brand');
 
 
 
