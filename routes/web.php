@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\indexController;
 use App\Http\Controllers\Backend\chartController;
 use App\Http\Controllers\Backend\tableController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\BrandController;
 
 
@@ -70,5 +71,13 @@ Route::get('Brand/Edit/{id}',[BrandController::class, 'editBrand'])->name('edit.
 Route::post('store/brand/{id}',[BrandController::class, 'updateBrand'])->name('update.Brand');
 Route::get('Brand/Delete/{id}',[BrandController::class, 'brandDelete'])->name('Delete.Brand');
 
-
+// all Company
+// index
+Route::get('Company/all',[CompanyController::class,'allCompany'])->name('all.company');
+// insert
+Route::post('Company/add',[CompanyController::class, 'addCompany'])->name('store.company');
+// edit
+Route::get('Company/Edit/{id}',[CompanyController::class, 'editcompany'])->name('edit.brand');
+// update
+Route::post('Store/Company/{id}',[CompanyController::class, 'updateCompany'])->name('update.Company');
 
