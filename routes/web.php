@@ -80,4 +80,5 @@ Route::post('Company/add',[CompanyController::class, 'addCompany'])->name('store
 Route::get('Company/Edit/{id}',[CompanyController::class, 'editcompany'])->name('edit.brand');
 // update
 Route::post('Store/Company/{id}',[CompanyController::class, 'updateCompany'])->name('update.Company');
-
+// companyDelete
+Route::get('Company/Delete/{id}',[CompanyController::class, 'companyDelete'])->name('Delete.Company');

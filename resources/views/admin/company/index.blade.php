@@ -60,7 +60,7 @@
                                 <td>
                                     {{-- <a href="" class="btn btn-info">Edit</a> --}}
                                     <a href="{{ url('Company/Edit/'.$company->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="{{ url('Company/Delete/'.$company->id) }}" class="btn btn-danger">Delete</a>
                                     {{--
                                     <a href="{{ url('softdelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a> --}}
                                 </td>

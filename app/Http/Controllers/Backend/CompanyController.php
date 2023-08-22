@@ -60,6 +60,7 @@ class CompanyController extends Controller
     }
     // edit end
     // update start
+
     public function updateCompany(Request $request , $id)
     {
         $old_img = $request->old_img;
@@ -109,27 +110,26 @@ class CompanyController extends Controller
         }
 
         if($company_image){
-
             $name_gen = hexdec(uniqid());
             $img_ext = strtolower($company_image->getClientOriginalExtension());
             $img_name = $name_gen.'.'.$img_ext;
             $up_location = 'img/company/';
             $last_img = $up_location.$img_name;
             $company_image->move($up_location,$img_name);
-            // unlink($old_img);
+            unlink($old_img);
 
             Company::find($id)->update([
 
                 'company_name' => $request->company_name,
                 'user_id' => Auth::user()->id,
-                'company_image' => '222.jpg',
+                'company_image' => $last_img,
                 'created_at' => Carbon::now()
             ]);
             // return redirect()->back()->with('success','Company updated');
-            return redirect()->route('all.company')->with('success','Company updated1');
+            return redirect()->route('all.company')->with('success','Company updated');
         }
         else{
-
+            
             Company::find($id)->update([
 
                 'company_name' => $request->company_name,
@@ -137,9 +137,21 @@ class CompanyController extends Controller
                 'created_at' => Carbon::now()
             ]);
             // return redirect()->back()->with('success','Company updated');
-            return redirect()->route('all.company')->with('success','Company updated2');
+            return redirect()->route('all.company')->with('success','Company updated');
         }
     }
     // update end
+
+    // delete company start
+    public function companyDelete($id){
+        $img = Company::find($id);
+        $old_image = $img->company_image;
+        unlink($old_image);
+        Company::withTrashed()->find($id)->forceDelete();
+        return redirect()->back()->with('success','Company Deleted');
+    }
+
+    // delete company end
+
 
 }
