@@ -129,7 +129,7 @@ class CompanyController extends Controller
             return redirect()->route('all.company')->with('success','Company updated');
         }
         else{
-            
+
             Company::find($id)->update([
 
                 'company_name' => $request->company_name,
@@ -148,7 +148,8 @@ class CompanyController extends Controller
         $old_image = $img->company_image;
         unlink($old_image);
         Company::withTrashed()->find($id)->forceDelete();
-        return redirect()->back()->with('success','Company Deleted');
+        // return redirect()->back()->with('success','Company Deleted');
+        return redirect()->route('all.company')->with('success','Company Deleted');
     }
 
     // delete company end

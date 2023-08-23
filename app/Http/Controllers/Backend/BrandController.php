@@ -169,7 +169,8 @@ class BrandController extends Controller
         // print_r($old_image);
         // die();
         Brand::withTrashed()->find($id)->forceDelete();
-        return redirect()->back()->with('success','Brand Deleted');
+        // return redirect()->back()->with('success','Brand Deleted');
+        return redirect()->route('all.brand')->with('success','Brand Deleted');
     }
 
 }

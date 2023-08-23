@@ -60,7 +60,7 @@
                                 <td>
                                     {{-- <a href="" class="btn btn-info">Edit</a> --}}
                                     <a href="{{ url('Company/Edit/'.$company->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ url('Company/Delete/'.$company->id) }}" class="btn btn-danger">Delete</a>
+                                    <a href="{{ url('Company/Delete/'.$company->id) }}" onclick="return confirm('Are You Sure to Delete')" class="btn btn-danger">Delete</a>
                                     {{--
                                     <a href="{{ url('softdelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a> --}}
                                 </td>
@@ -81,8 +81,8 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                     <a class="btn float-end btn-warning" href="">Create</a>
-                    </div>
+                    Insert Company
+                </div>
 
                 <div class="card-body">
 

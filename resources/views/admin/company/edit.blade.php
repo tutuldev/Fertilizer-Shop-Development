@@ -6,9 +6,9 @@
 
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">
-                     <a class="btn float-end btn-warning" href="">Update Company</a>
-                    </div>
+                <div class="card-header fs-4 ">
+                    Update  Company
+                </div>
 
                 <div class="card-body">
 
@@ -40,6 +40,7 @@
 
                           </div>
                         <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ url('Company/Delete/'.$company->id) }}" onclick="return confirm('Are You Sure to Delete')" class="btn btn-danger">Delete</a>
                       </form>
                     {{-- form end --}}
 
